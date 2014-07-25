@@ -7,7 +7,7 @@
 
 <body>
 
-<input	type='button' onclick="location.href='aaa.php'" value='上傳頁'>
+<input	type='button' onclick="location.href='uploadC.php'" value='上傳頁'>
 </input>
 <table border='1'>
 <tr>
@@ -17,7 +17,7 @@
 <th>上傳者</th>
 </tr>
 <?php
-while ($row = mysqli_fetch_array($result1)) {
+while ($row = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $row['time'] . "</td>";
     echo "<td>" . $row['imgname'] . "</td>";

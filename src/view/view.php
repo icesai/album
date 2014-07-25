@@ -4,7 +4,7 @@ class view
 {
     private $data;
 
-    public function __construct($result1, $template)
+    public function __construct($result, $template)
     {
         include "$template";
     }
