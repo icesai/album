@@ -7,7 +7,7 @@
 			name="file" id="file" /> <input type="submit" name="submit"
 			value="上傳檔案" />
 	</form>
-	<input type='button' onclick="location.href='bbb.php'" value='瀏覽頁'>
+	<input type='button' onclick="location.href='albumC.php'" value='瀏覽頁'>
 </body>
 </html>
 

@@ -31,14 +31,14 @@ class dbconn
             $msg = array("a", "Error: " . $_FILES["file"]["error"]);
             return $msg ; 
         } else {
-            if (file_exists("img/" . $_FILES["file"]["name"])) {
+            if (file_exists("../../img/" . $_FILES["file"]["name"])) {
         
                 $msg = array("a", "已有相同檔案名稱，請勿重覆上傳相同檔案或更改檔案名稱"); 
                 return $msg ; 
             } else {
 //                 echo "相片名稱: " . $_POST["imgname"]."<br/>";
 //                 echo "上傳者名稱: " . $_POST["username"]."<br/>";
-                move_uploaded_file($_FILES["file"]["tmp_name"], "img/".$_FILES["file"]["name"]);
+                move_uploaded_file($_FILES["file"]["tmp_name"], "../../img/".$_FILES["file"]["name"]);
                 $con = call_user_func('dbconn::connectMysql');        
                 $tmpname = mysqli_real_escape_string($con, $_FILES["file"]["name"]);
                 $imgname = mysqli_real_escape_string($con, $_POST["imgname"]);
