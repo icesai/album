@@ -7,7 +7,7 @@
 
 <body>
 
-<input type='button' onclick="location.href='albumC.php'" value='上傳頁'>
+<input type='button' onclick="location.href='uploadC.php'" value='上傳頁'>
 </input>
 
 <?php echo $result[1]; ?>
