@@ -17,14 +17,15 @@ class dbconn
         $con = call_user_func('dbconn::connectMysql');
         $result = mysqli_query($con, "SELECT * FROM aaa");
         mysqli_close($con);
-        return $result;         
+        return $result;
     }
 
     function upload()
     {
         if ($_FILES["file"]["error"] > 0) {
 
-            $msg = array("a", "Error: " . $_FILES["file"]["error"]);
+            //             $msg = array("a", "Error: " . $_FILES["file"]["error"]);
+            $msg = array("a", "請確認您的檔案是否正確！");
             return $msg ;
         } else {
             if (file_exists("../../img/" . $_FILES["file"]["name"])) {
@@ -55,7 +56,7 @@ class dbconn
     }
 
     function edit()
-    {    
+    {
         $con = call_user_func('dbconn::connectMysql');
         $imgno=$_GET["imgno"];
         $imgname=$_GET["imgname"];
@@ -63,9 +64,9 @@ class dbconn
         $result = mysqli_query($con, "SELECT * FROM aaa");
         mysqli_close($con);
         return $result;
-        
+
     }
-    
+
     function del()
     {
         $con = call_user_func('dbconn::connectMysql');
@@ -74,12 +75,12 @@ class dbconn
         $killfn = mysqli_query($con, "select tmpname FROM aaa where imgno in (".$alldel.")");
 
         while ($row = mysqli_fetch_array($killfn)){
-            
+
             unlink("../../img/".$row['tmpname']);
         }
         mysqli_query($con, "DELETE FROM aaa where imgno in (".$alldel.")");
         echo "<script> alert('圖片已刪除！') </script>";
         mysqli_close($con);
-    }     
+    }
 }
 
