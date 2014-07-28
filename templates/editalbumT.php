@@ -9,7 +9,7 @@
 
 <input	type='button' onclick="location.href='uploadC.php'" value='上傳頁'></input>
 <input type='button' onclick="location.href='albumC.php'" value='瀏覽頁'></input>
-<form action="delimgC.php"  method="post">
+<form action="delimgC.php"  method="post" name="view1" id="view1" >
 <table border='1'>
 <tr>
 <th>時間</th>
@@ -19,16 +19,20 @@
 <th>刪除</th>
 </tr>
 <?php
+$counter = 1;
 while ($row = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $row['time'] . "</td>";
-    echo "<td><input type='text' name='imgname".$row['imgno']."' id='imgname".$row['imgno']."
-    ' value='" . $row['imgname'] . "'>
-    <input type='button' onclick='location.href='editalbum2C.php'' value='修改'></input></td>";
+    echo "<td><input type='text' name='imgname_{$counter}' id='imgname_{$counter}' 
+    value='" . $row['imgname'] . "'>
+    <input type='button' 
+    onclick='location.href=\"editalbum2C.php?imgno=".$row['imgno']."&imgname=\"+view1.imgname_{$counter}.value' 
+    value='修改' /></td>";
     echo "<td><img src='../../img/" . $row['tmpname'] . "' ></td>";
     echo "<td>" . $row['username'] . "</td>";
     echo "<td> <input type='checkbox' name='imgno[]' id='imgno[]' value='".$row['imgno']. "'></td>";
     echo "</tr>";
+    $counter++;
 }
 ?>
 </table>

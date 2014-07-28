@@ -31,6 +31,6 @@
 </table>
 </div>
 <div class="display">
-
+</div>
 </body>
 </html>

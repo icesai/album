@@ -11,21 +11,17 @@ class dbconn
         }
         return $con ;
     }
-
+     
     function viewall()
     {
-
         $con = call_user_func('dbconn::connectMysql');
         $result = mysqli_query($con, "SELECT * FROM aaa");
         mysqli_close($con);
-        //          return $result;
-         
-        return $result;
-         
+        return $result;         
     }
 
-    function upload(){
-
+    function upload()
+    {
         if ($_FILES["file"]["error"] > 0) {
 
             $msg = array("a", "Error: " . $_FILES["file"]["error"]);
@@ -51,46 +47,39 @@ class dbconn
 
                 }
                 mysqli_close($con);
-
                 $msg = array("b", $_POST["imgname"], $_POST["username"]);
                 return $msg;
             }
         }
-
-
-
          
-
     }
 
-    function edit(){
-
+    function edit()
+    {    
         $con = call_user_func('dbconn::connectMysql');
-
-        mysqli_query($con, "SELECT * FROM aaa");
-
-
+        $imgno=$_GET["imgno"];
+        $imgname=$_GET["imgname"];
+        mysqli_query($con, "UPDATE aaa SET imgname='".$imgname."' WHERE imgno= ".$imgno."");
+        $result = mysqli_query($con, "SELECT * FROM aaa");
         mysqli_close($con);
+        return $result;
+        
     }
-    function del(){
-
+    
+    function del()
+    {
         $con = call_user_func('dbconn::connectMysql');
         $imgno = $_POST["imgno"];
         $alldel = implode(", ", $imgno);
         $killfn = mysqli_query($con, "select tmpname FROM aaa where imgno in (".$alldel.")");
-        
-        
+
         while ($row = mysqli_fetch_array($killfn)){
-            unlink("../../img/".$row['tmpname']);
             
+            unlink("../../img/".$row['tmpname']);
         }
         mysqli_query($con, "DELETE FROM aaa where imgno in (".$alldel.")");
-
         echo "<script> alert('圖片已刪除！') </script>";
         mysqli_close($con);
-
-    }
-
-     
+    }     
 }
 
