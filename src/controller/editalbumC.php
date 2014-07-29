@@ -2,8 +2,6 @@
 include '../model/dbM.php';
 include '../view/view.php';
 
-$result = call_user_func('dbconn::viewall');
-// $dbc = new dbconn;
-// $result = $dbc->connectMysql();
+$result = call_user_func(aaa.'\Dbconn::viewall');
 
-return new view($result, "../../templates/editalbumT.php");
+return new see\view($result, "../../templates/editalbumT.php");

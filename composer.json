@@ -1,0 +1,7 @@
+{
+    "require": {
+        "zerkalica/phpcs": "dev-master",
+        "corneltek/pux": "dev-master",
+        "twig/twig": "1.16.*@dev"
+    }
+}

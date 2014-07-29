@@ -1,7 +1,9 @@
 <?php
+namespace see;
 
-class view
+class View
 {
+
     private $data;
 
     public function __construct($result, $template)

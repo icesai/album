@@ -5,4 +5,4 @@ include '../view/view.php';
 
 $result = 'upload2C.php' ;
 
-return new view($result, "../../templates/uploadT.php");
+return new see\view($result, "../../templates/uploadT.php");
