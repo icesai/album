@@ -16,7 +16,8 @@ class Dbconn
 
     public function viewall()
     {
-        $con = call_user_func(AAA.'\Dbconn::connectMysql');
+//         $con = call_user_func(AAA.'\Dbconn::connectMysql');
+        $con = $this->connectMysql();
         $result = mysqli_query($con, "SELECT * FROM aaa");
         mysqli_close($con);
         return $result;
@@ -35,7 +36,8 @@ class Dbconn
                 return $msg ;
             } else {
                 move_uploaded_file($_FILES["file"]["tmp_name"], "../../img/".$_FILES["file"]["name"]);
-                $con = call_user_func(AAA.'\Dbconn::connectMysql');
+//                 $con = call_user_func(AAA.'\Dbconn::connectMysql');
+                $con = $this->connectMysql();
                 $tmpname = mysqli_real_escape_string($con, $_FILES["file"]["name"]);
                 $imgname = mysqli_real_escape_string($con, $_POST["imgname"]);
                 $username = mysqli_real_escape_string($con, $_POST["username"]);
@@ -62,7 +64,8 @@ class Dbconn
                 $tmp_name = $_FILES["ff"]["tmp_name"][$key];
                 $name = $_FILES["ff"]["name"][$key];
                 move_uploaded_file($tmp_name, "$uploads_dir/$name");
-                $con = call_user_func(AAA.'\Dbconn::connectMysql');
+//                 $con = call_user_func(AAA.'\Dbconn::connectMysql');
+                $con = $this->connectMysql();
                 $tmpname = mysqli_real_escape_string($con, $_FILES["ff"]["name"][$key]);
                 $imgname = '';
                 $username = 'aaa';
@@ -82,7 +85,8 @@ class Dbconn
 
     public function edit()
     {
-        $con = call_user_func(AAA.'\Dbconn::connectMysql');
+//         $con = call_user_func(AAA.'\Dbconn::connectMysql');
+        $con = $this->connectMysql();
         $imgno=$_GET["imgno"];
         $imgname=$_GET["imgname"];
         mysqli_query($con, "UPDATE aaa SET imgname='".$imgname."' WHERE imgno= ".$imgno."");
@@ -93,7 +97,8 @@ class Dbconn
 
     public function del()
     {
-        $con = call_user_func(AAA.'\Dbconn::connectMysql');
+//         $con = call_user_func(AAA.'\Dbconn::connectMysql');
+        $con = $this->connectMysql();
         $imgno = $_POST["imgno"];
         $alldel = implode(", ", $imgno);
         $killfn = mysqli_query($con, "select tmpname FROM aaa where imgno in (".$alldel.")");
