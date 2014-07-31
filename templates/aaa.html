@@ -1,6 +1,12 @@
 <html>
 <body>
-<div>{{name}}</div>
+
+<ul>
+	{% for see in seeall %}
+	<li>{{ see.time }}-{{ see.imgno }}-{{ see.key }}</li>
+	{% endfor %}
+</ul>
+
 	<form action="upload.php" method="post" enctype="multipart/form-data">
 		圖片名稱:<input type="text" name="imgname" id="imgname" /><br /> 上傳者名稱:<input
 			type="text" name="username" id="username" /><br /> <input type="file"

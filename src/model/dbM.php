@@ -4,6 +4,7 @@ namespace aaa;
 class Dbconn
 {
 
+
     public function connectMysql()
     {
         $con=mysqli_connect("localhost", "root", "1234", "aaa");
@@ -20,7 +21,7 @@ class Dbconn
         mysqli_close($con);
         return $result;
     }
-
+    
     public function upload()
     {
         if ($_FILES["file"]["error"] > 0) {

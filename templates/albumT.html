@@ -17,16 +17,14 @@
 <th>圖片</th>
 <th>上傳者</th>
 </tr>
-<?php 
-while ($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['time'] . "</td>";
-    echo "<td>" . $row['imgname'] . "</td>";
-    echo "<td><img src='../../img/" . $row['tmpname'] . "' ></td>";
-    echo "<td>" . $row['username'] . "</td>";
-    echo "</tr>";
-}
-?>
+{% for see in seeall %}
+    <tr>
+    <td>{{ see.time }}</td>
+    <td> {{ see.imgname }}</td>
+    <td><img src='../../img/{{ see.tmpname }}' ></td>
+    <td> {{ see.username }}</td>
+    </tr>
+{% endfor %}
 </table>
 </body>
 </html>

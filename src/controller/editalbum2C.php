@@ -1,7 +1,15 @@
 <?php
 include '../model/dbM.php';
-include '../view/view.php';
+require "../../vendor/autoload.php";
 
-$result = call_user_func(aaa.'\Dbconn::edit');
+$loader = new \Twig_Loader_Filesystem('../../templates');
+$twig = new \Twig_Environment($loader);
+$result = call_user_func(AAA.'\Dbconn::edit');
+$i=0;
+while ($row = mysqli_fetch_array($result)) {
 
-return new see\view($result, "../../templates/editalbumT.php");
+    $see[$i]= $row;
+    $i++;
+}
+
+echo $twig->render('editalbumT.html',array('seeall'=>$see));

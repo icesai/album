@@ -1,17 +1,19 @@
 <?php
 include '../model/dbM.php';
-include '../view/view.php';
+require "../../vendor/autoload.php";
 
+$loader = new \Twig_Loader_Filesystem('../../templates');
+$twig = new \Twig_Environment($loader);
 $msg = call_user_func(aaa.'\Dbconn::upload');
-
 switch ($msg[0])
 {
     case a:
-        return new see\view($msg, "../../templates/uploaderrorT.php");
+        echo $twig->render('uploaderrorT.html',array('upmsg'=>$msg));
 
     case b:
-        return new see\view($msg, "../../templates/uploadokT.php");
+        echo $twig->render('uploadokT.html',array('upmsg'=>$msg));
 
     default:
-        break;
+        $msg=array("c","你這個小壞蛋！");
+        echo $twig->render('uploaderrorT.html',array('upmsg'=>$msg));
 }
