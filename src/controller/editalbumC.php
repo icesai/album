@@ -1,5 +1,5 @@
 <?php
-use aaa\Dbconn;
+use model\Dbconn;
 include '../model/dbM.php';
 require "../../vendor/autoload.php";
 

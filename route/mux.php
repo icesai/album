@@ -1,20 +1,16 @@
 <?php
-require '../vendor/autoload.php'; // use PCRE patterns you need Pux\PatternCompiler class.
-use Pux\Executor;
+require 'vendor/autoload.php';
+use Pux\Mux;
 
-class ProductController {
-    public function listAction() {
-        return 'product list';
-    }
-    public function itemAction($id) { 
-        return "product $id";
-    }
-}
-$mux = new Pux\Mux;
-$mux->add('/product', ['ProductController','listAction']);
-$mux->add('/product/:id', ['ProductController','itemAction'] , [
-    'require' => [ 'id' => '\d+', ],
-    'default' => [ 'id' => '1', ]
-]);
-$route = $mux->dispatch('/product/1');
-Executor::execute($route);
+$mux = new Mux;
+
+
+$mux->add('/', array('controller\Albumcontroller','albumC'));
+$mux->add('/upload', array('controller\Albumcontroller','uploadC'));
+$mux->any('/doupload', array('controller\Albumcontroller','douploadC'));
+$mux->any('/edit', array('controller\Albumcontroller','editC'));
+$mux->any('/editalbum', array('controller\Albumcontroller','edit2C'));
+$mux->any('/delimg', array('controller\Albumcontroller','delimgC'));
+$mux->sort();
+
+return $mux;

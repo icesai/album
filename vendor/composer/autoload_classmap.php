@@ -6,4 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'controller\\Albumcontroller' => $baseDir . '/src/controller/maincontroller.php',
+    'model\\Dbconn' => $baseDir . '/src/model/dbM.php',
+    'see\\View' => $baseDir . '/src/view/view.php',
 );

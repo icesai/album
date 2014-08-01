@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5ac20798dccdd5532aaf4fa12666af5d",
+    "hash": "f1a41d14fada9b9265f90abd5e41c758",
     "packages": [
         {
             "name": "corneltek/pux",
-            "version": "dev-master",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/c9s/Pux.git",
-                "reference": "80a6f8a0aa4fe9c1b850e137fbcd77cc989e08a0"
+                "reference": "6bdf19d71febe4601d65489d64de1e2591ff6e44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/c9s/Pux/zipball/80a6f8a0aa4fe9c1b850e137fbcd77cc989e08a0",
-                "reference": "80a6f8a0aa4fe9c1b850e137fbcd77cc989e08a0",
+                "url": "https://api.github.com/repos/c9s/Pux/zipball/6bdf19d71febe4601d65489d64de1e2591ff6e44",
+                "reference": "6bdf19d71febe4601d65489d64de1e2591ff6e44",
                 "shasum": ""
             },
             "require-dev": {
@@ -40,7 +40,7 @@
                 }
             ],
             "description": "Fast PHP router",
-            "time": "2014-07-02 08:00:27"
+            "time": "2014-02-19 10:45:14"
         },
         {
             "name": "twig/twig",
@@ -48,12 +48,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "7d1577ff3c563aff7c447302d57756fd40fc675b"
+                "reference": "72aa82b9a260b823325eec9b37bf6106a0137fb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/7d1577ff3c563aff7c447302d57756fd40fc675b",
-                "reference": "7d1577ff3c563aff7c447302d57756fd40fc675b",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/72aa82b9a260b823325eec9b37bf6106a0137fb2",
+                "reference": "72aa82b9a260b823325eec9b37bf6106a0137fb2",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-07-28 13:12:00"
+            "time": "2014-07-31 13:21:40"
         },
         {
             "name": "zerkalica/phpcs",
@@ -134,7 +134,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "zerkalica/phpcs": 20,
-        "corneltek/pux": 20,
         "twig/twig": 20
     },
     "prefer-stable": false,

@@ -1,9 +1,8 @@
 <?php
-namespace aaa;
+namespace model;
 
 class Dbconn
 {
-
 
     public function connectMysql()
     {
@@ -30,12 +29,12 @@ class Dbconn
             $msg = array("a", "請確認您的檔案是否正確！");
             return $msg ;
         } else {
-            if (file_exists("../../img/" . $_FILES["file"]["name"])) {
+            if (file_exists("img/" . $_FILES["file"]["name"])) {
 
                 $msg = array("a", "已有相同檔案名稱，請勿重覆上傳相同檔案或更改檔案名稱");
                 return $msg ;
             } else {
-                move_uploaded_file($_FILES["file"]["tmp_name"], "../../img/".$_FILES["file"]["name"]);
+                move_uploaded_file($_FILES["file"]["tmp_name"], "img/".$_FILES["file"]["name"]);
 //                 $con = call_user_func(AAA.'\Dbconn::connectMysql');
                 $con = $this->connectMysql();
                 $tmpname = mysqli_real_escape_string($con, $_FILES["file"]["name"]);
@@ -57,7 +56,7 @@ class Dbconn
 
     public function uploads()
     {
-        $uploads_dir = '../../img';//存放上傳檔案資料夾
+        $uploads_dir = 'img';//存放上傳檔案資料夾
         foreach ($_FILES["ff"]["error"] as $key => $error) {
             if ($error == UPLOAD_ERR_OK) {
 
@@ -105,7 +104,7 @@ class Dbconn
 
         while ($row = mysqli_fetch_array($killfn)) {
 
-            unlink("../../img/".$row['tmpname']);
+            unlink("img/".$row['tmpname']);
         }
         mysqli_query($con, "DELETE FROM aaa where imgno in (".$alldel.")");
         echo "<script> alert('圖片已刪除！') </script>";

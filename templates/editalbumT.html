@@ -10,7 +10,7 @@
 
 <input	type='button' onclick="location.href='uploadC.php'" value='上傳頁'></input>
 <input type='button' onclick="location.href='albumC.php'" value='瀏覽頁'></input>
-<form action="delimgC.php"  method="post" name="view1" id="view1">
+<form action="delimg"  method="post" name="view1" id="view1">
 <table border='1'>
 <tr>
 <th>時間</th>
@@ -26,7 +26,7 @@
     <td><input type='text' name='imgname_{{ see.imgno }}' id='imgname_{{ see.imgno }}' 
     value='{{ see.imgname }}'>
     <input type='button' 
-     onclick='location.href="editalbum2C.php?imgno={{ see.imgno }}&imgname="+view1.imgname_{{ see.imgno }}.value' 
+     onclick='location.href="editalbum?imgno={{ see.imgno }}&imgname="+view1.imgname_{{ see.imgno }}.value' 
      value='修改' /></td>
     <td><img src='../../img/{{ see.tmpname }}' ></td>
     <td> {{ see.username }}</td>

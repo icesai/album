@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<form action="<?php echo $result; ?>" method="post" enctype="multipart/form-data">
+	<form action="{{ res.0 }}" method="post" enctype="multipart/form-data">
 		圖片名稱:<input type="text" name="imgname" id="imgname" /><br /> 
 		上傳者名稱:<input type="text" name="username" id="username" /><br /> 
 			<input type="file"name="file" id="file" /> 

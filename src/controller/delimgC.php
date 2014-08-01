@@ -1,5 +1,5 @@
 <?php
-use aaa\Dbconn;
+use model\Dbconn;
 include '../model/dbM.php';
 
 // $result = call_user_func(aaa.'\Dbconn::del');
