@@ -17,10 +17,9 @@ class Albumcontroller{
         $sql = new Dbconn();
         $result = $sql->viewall();
         $i=0;
-        while ($row = mysqli_fetch_array($result)) {
-        
-            $see[$i]= $row;
-            $i++;
+        foreach($result as $row) {
+             $see[$i]= $row;
+             $i++;
         }
         echo $twig->render('albumT.html',array('seeall'=>$see));
     }
@@ -61,16 +60,13 @@ class Albumcontroller{
         
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
-        // $result = call_user_func(AAA.'\Dbconn::viewall');
         $sql = new Dbconn();
         $result = $sql->viewall();
         $i=0;
-        while ($row = mysqli_fetch_array($result)) {
-        
+        foreach($result as $row) {
             $see[$i]= $row;
             $i++;
         }
-        
         echo $twig->render('editalbumT.html',array('seeall'=>$see));        
     }
     
@@ -81,19 +77,19 @@ class Albumcontroller{
         $aaa = new Dbconn();
         $result = $aaa->edit();
         $i=0;
-        while ($row = mysqli_fetch_array($result)) {
-        
+        foreach($result as $row) {
             $see[$i]= $row;
             $i++;
         }
         
         echo $twig->render('editalbumT.html',array('seeall'=>$see));
     }
+    
     public function delimgC(){
         
         $aaa = new Dbconn();
         $result = $aaa->del();
-        echo Albumcontroller::overPage('/');
+        echo Albumcontroller::overPage('/editalbumC');
     }
     
 }

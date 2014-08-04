@@ -4,7 +4,6 @@ use Pux\Mux;
 
 $mux = new Mux;
 
-
 $mux->add('/', array('controller\Albumcontroller','albumC'));
 $mux->add('/upload', array('controller\Albumcontroller','uploadC'));
 $mux->any('/doupload', array('controller\Albumcontroller','douploadC'));
