@@ -1,8 +1,9 @@
 {
     "require": {
-        "zerkalica/phpcs": "dev-master",
-        "corneltek/pux": "~1.5",
-	"twig/twig": "1.16.*@dev"
+       "zerkalica/phpcs": "dev-master",
+       "corneltek/pux": "~1.5",
+	"twig/twig": "1.16.*@dev",
+	"phpunit/phpunit": "4.1.*"
     },
     "autoload": {
 	"classmap": ["src/"]

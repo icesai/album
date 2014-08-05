@@ -1,7 +1,7 @@
 <?php
-namespace model;
 
-class Dbconn
+
+class Dbconn2
 {
 
     public function connectMysql()

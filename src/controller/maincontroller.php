@@ -3,96 +3,90 @@ namespace controller;
 
 use model\Dbconn;
 
-class Albumcontroller{
-    
+class Albumcontroller
+{
+
     public function overPage($goto)
     {
         return "<script>window.location.replace('{$goto}')</script>";
     }
-    
-    public function albumC(){
-        
+
+    public function albumC()
+    {
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
         $sql = new Dbconn();
         $result = $sql->viewall();
         $i=0;
-        foreach($result as $row) {
-             $see[$i]= $row;
-             $i++;
+        foreach ($result as $row) {
+            $see[$i]= $row;
+            $i++;
         }
-        echo $twig->render('albumT.html',array('seeall'=>$see));
+        echo $twig->render('albumT.html', array('seeall'=>$see));
     }
-    
-    public function uploadC(){
-        
+
+    public function uploadC()
+    {
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
         $result[0] = '/doupload';
-        echo $twig->render('uploadT.php',array('res'=>$result));
+        echo $twig->render('uploadT.html', array('res'=>$result));
     }
-    
-    public function douploadC(){
 
+    public function douploadC()
+    {
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
         $aaa = new Dbconn();
         $msg = $aaa->upload();
-        
+
         switch ($msg[0])
         {
-            case a:
-                echo $twig->render('uploaderrorT.html',array('upmsg'=>$msg));
+            case "a":
+                echo $twig->render('uploaderrorT.html', array('upmsg'=>$msg));
                 break;
-        
-            case b:
-                echo $twig->render('uploadokT.html',array('upmsg'=>$msg));
+            case "b":
+                echo $twig->render('uploadokT.html', array('upmsg'=>$msg));
                 break;
-                
             default:
                 $msg=array("c","你這個小壞蛋！");
-                echo $twig->render('uploaderrorT.html',array('upmsg'=>$msg));
+                echo $twig->render('uploaderrorT.html', array('upmsg'=>$msg));
                 break;
-        }     
+        }
     }
-    
-    public function editC(){
-        
+
+    public function editC()
+    {
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
         $sql = new Dbconn();
         $result = $sql->viewall();
         $i=0;
-        foreach($result as $row) {
+        foreach ($result as $row) {
             $see[$i]= $row;
             $i++;
         }
-        echo $twig->render('editalbumT.html',array('seeall'=>$see));        
+        echo $twig->render('editalbumT.html', array('seeall'=>$see));
     }
-    
-    public function edit2C(){
-        
+
+    public function edit2C()
+    {
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
         $aaa = new Dbconn();
         $result = $aaa->edit();
         $i=0;
-        foreach($result as $row) {
+        foreach ($result as $row) {
             $see[$i]= $row;
             $i++;
         }
-        
-        echo $twig->render('editalbumT.html',array('seeall'=>$see));
+        echo $twig->render('editalbumT.html', array('seeall'=>$see));
     }
-    
-    public function delimgC(){
-        
+
+    public function delimgC()
+    {
         $aaa = new Dbconn();
         $result = $aaa->del();
         echo Albumcontroller::overPage('/editalbumC');
     }
-    
 }
-
-
-

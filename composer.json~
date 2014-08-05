@@ -1,0 +1,10 @@
+{
+    "require": {
+        "zerkalica/phpcs": "dev-master",
+        "corneltek/pux": "~1.5",
+	"twig/twig": "1.16.*@dev"
+    },
+    "autoload": {
+	"classmap": ["src/"]
+    }
+}
