@@ -1,3 +1,7 @@
 src/controller/uploads2C.php
 src/controller/uploadsC.php
 templates/uploadsT.html
+.settings/
+.buildpath
+.project
+codetemplates.xml
