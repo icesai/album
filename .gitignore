@@ -5,3 +5,4 @@ templates/uploadsT.html
 .buildpath
 .project
 codetemplates.xml
+vendor/
