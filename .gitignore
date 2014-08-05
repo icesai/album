@@ -6,3 +6,7 @@ templates/uploadsT.html
 .project
 codetemplates.xml
 vendor/
+img/
+tmp/
+composer.phar
+route/compiled.php

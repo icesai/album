@@ -2,8 +2,8 @@
 
 all: update pux
 	test -d tmp || mkdir tmp
-	test -d imgs/orig || mkdir -p imgs/orig
-	chmod 777 tmp imgs/orig
+	test -d img || mkdir img
+	chmod 777 tmp img
 
 sql:
 	echo '<?php define("BASE_DIR", __DIR__);require("vendor/autoload.php");(new Fruit\Config(__DIR__))->getDb()->exec(file_get_contents("test/sql/structure.sql"));' | php
