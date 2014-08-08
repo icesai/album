@@ -8,14 +8,17 @@
 <body>
     <table>
     <tr>
+    <td>上傳成功!</td>
     <td>圖片名稱:</td>
-    <td>{{ upmsg.1  }}</td>
+    <td>{{ upmsg.0  }}</td>
     </tr>
     <tr>
     <td>上傳者:</td>
-    <td>{{ upmsg.2  }}</td>
+    <td>{{ upmsg.1  }}</td>
     </tr>
     </table>
-	<input type='button' onclick="location.href='albumC.php'" value='瀏覽頁'>
+	<input type='button' onclick="location.href='/'" value='瀏覽頁'></input>
+	<input type='button' onclick="location.href='upload'" value='上傳頁'></input>
+<input type='button' onclick="location.href='edit'" value='編輯頁'></input>
 </body>
 </html>

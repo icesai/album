@@ -68,8 +68,8 @@ class Dbconn
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }
-        $result = $this->con->query('SELECT * FROM aaa');
-        return $result;
+
+            return self::viewall();
     }
 
     public function del()
