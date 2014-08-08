@@ -1,6 +1,6 @@
-src/controller/uploads2C.php
-src/controller/uploadsC.php
-templates/uploadsT.html
+src/controller/UserC.php
+src/model/albumM.php
+templates/albumsT.html
 .settings/
 .buildpath
 .project
@@ -10,3 +10,4 @@ img/
 tmp/
 composer.phar
 route/compiled.php
+

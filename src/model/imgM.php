@@ -4,7 +4,7 @@ namespace model;
 
 class ImgM extends DbconM
 {
-    public $table;
+    private  $table;
     public function __construct()
     {
         $this->table = 'aaa';
@@ -28,9 +28,7 @@ class ImgM extends DbconM
 
     public function showImg()
     {
-        $query = '1';
         return self::select($this->table, $query);
-
     }
 
     public function editImg()
@@ -41,11 +39,7 @@ class ImgM extends DbconM
         $query2 = 'imgno = :imgno';
         $array = array(':imgno'   => $imgno, ':imgname' => $imgname);
         $this->update($this->table, $query1, $query2, $array);
-        $query = '1';
         return self::select($this->table, $query);
-        
-//         return self::update($query, $array);
-
     }
 
     public function delImg()

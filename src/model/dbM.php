@@ -3,96 +3,60 @@ namespace model;
 
 use \PDO;
 
-class Dbconn
+class DbconM
 {
-    
     private $con;
     public function __construct()
     {
         $this->con = new PDO("mysql:host=localhost;dbname=aaa", 'root', '1234');
         $this->con->exec("SET NAMES utf8");
     }
-
-    public function viewall()
-    {
-        $result = $this->con->query('SELECT * FROM aaa');
-        return $result;
-    }
     
-    public function upload()
+    public function select($table, $query)
     {
-        if ($_FILES["file"]["error"] > 0) {
+        if($query==null){
             
-            $msg = array("a", "請確認您的檔案是否正確！");
-            return $msg ;
-        } else {
-            if (file_exists("img/" . $_FILES["file"]["name"])) {
-                
-                $msg = array("a", "已有相同檔案名稱，請勿重覆上傳相同檔案或更改檔案名稱");
-                return $msg ;
-            } else {
-                
-                move_uploaded_file($_FILES["file"]["tmp_name"], "img/".$_FILES["file"]["name"]);
-                try {
-                    $query='INSERT INTO aaa (tmpname, imgname, username) VALUES(:tmpname,:imgname,:username)';
-                    $stmt = $this->con->prepare($query);
-                    $stmt->execute(
-                        array(
-                            ':tmpname' => $_FILES["file"]["name"],
-                            ':imgname' => $_POST["imgname"],
-                            ':username' => $_POST["username"]
-                           )
-                    );
-                } catch (PDOException $e) {
-                    echo 'Error: ' . $e->getMessage();
-                }
-                $msg = array("b", $_POST["imgname"], $_POST["username"]);
-                return $msg;
-            }
+            $query = '1';
         }
-    }
-
-    public function edit()
-    {
-        $imgno=$_GET["imgno"];
-        $imgname=$_GET["imgname"];
         try {
-            $stmt = $this->con->prepare('UPDATE aaa SET imgname = :imgname WHERE imgno = :imgno');
-            $stmt->execute(
-                array(
-                    ':imgno'   => $imgno,
-                    ':imgname' => $imgname
-                        )
-            );
+
+            $result = $this->con->query('SELECT * FROM '.$table.' WHERE '.$query);
 
         } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+            ErrorC::showErrorC('0');
+        }
+        return $result;
+
+    }
+    
+    public function insert($table, $query1, $query2, $array)
+    {
+        try {
+            $stmt = $this->con->prepare('INSERT INTO '.$table.' ('.$query1.') VALUES ('.$query2.')');
+            $stmt->execute($array);
+        } catch (PDOException $e) {
+            ErrorC::showErrorC('0');
         }
 
-            return self::viewall();
     }
 
-    public function del()
+    public function update($table, $query1, $query2, $array)
     {
-
-        if ($_POST["imgno"] == null) {
-
-            echo "<script> alert('您沒有勾選任何要刪除的圖片！') </script>";
-        } else {
-            $alldel = str_repeat("?,", count($_POST["imgno"])-1) . "?";
-            $killfn =  $this->con->prepare('SELECT tmpname FROM aaa where imgno in ('.$alldel.')');
-            $killfn->execute($_POST["imgno"]);
-            foreach ($killfn as $row) {
-                unlink("img/".$row['tmpname']);
-            }
-            try {
-                $stmt = $this->con->prepare('DELETE FROM aaa WHERE imgno in ('.$alldel.')');
-                $stmt->execute($_POST["imgno"]);
-
-            } catch (PDOException $e) {
-                echo 'Error: ' . $e->getMessage();
-            }
-            echo "<script> alert('圖片已刪除！') </script>";
+        try {
+            $stmt = $this->con->prepare('UPDATE '.$table.' SET '.$query1.' WHERE '.$query2);
+            $stmt->execute($array);
+        
+        } catch (PDOException $e) {
+           ErrorC::showErrorC('0');
+        }
+    }
+    
+    public function del($table, $query)
+    {
+        try {
+            $this->con->query('DELETE FROM '.$table.' WHERE '.$query);
+        } catch (PDOException $e) {
+            ErrorC::showErrorC('0');
         }
     }
 }

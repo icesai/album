@@ -2,7 +2,6 @@
 namespace controller;
 
 use model\DbconM;
-
 use model\ErrormsgM;
 use model\ImgM;
 
@@ -25,7 +24,7 @@ class AlbumC
             $see[$i]= $row;
             $i++;
         }
-        echo $twig->render('albumT.html', array('seeall'=>$see));
+        echo $twig->render('imgsT.html', array('seeall'=>$see));
     }
     
     public function uploadImgC()
@@ -64,7 +63,6 @@ class AlbumC
                 $msg="3";
                 ErrorC::showErrorC($msg);
                 break;
-                
         }
     }
     public function editC()
