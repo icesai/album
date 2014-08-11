@@ -10,11 +10,12 @@ class AlbumC
 
     public function overPage($goto)
     {
-        return "<script>window.location.replace('{$goto}')</script>";
+        header('Location: '.$goto);
     }
 
     public function imgMainC()
     {
+
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
         $aaa = new ImgM();
@@ -45,11 +46,16 @@ class AlbumC
 
                 $msg = '2';
             } else {
+                $tmpname = $_FILES["file"]["name"];
+                $imgname = $_POST["imgname"];
+                $username = $_POST["username"];
                 $loader = new \Twig_Loader_Filesystem('templates');
                 $twig = new \Twig_Environment($loader);
                 $aaa = new ImgM();                
-                $msg = $aaa->newImg();
+                $aaa->newImg($tmpname, $imgname, $username);
+                $msg = array($_POST["imgname"], $_POST["username"]);
                 echo $twig->render('uploadokT.html', array('upmsg'=>$msg));
+                
                 exit();
             }
         }
@@ -80,10 +86,12 @@ class AlbumC
     }
     public function doeditC()
     {
+        $imgno=$_GET["imgno"];
+        $imgname=$_GET["imgname"];
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
         $aaa = new ImgM();
-        $result = $aaa->editImg();
+        $result = $aaa->editImg($imgno, $imgname);
         $i=0;
         foreach ($result as $row) {
             $see[$i]= $row;
@@ -93,8 +101,9 @@ class AlbumC
     }
     public function delimgC()
     {
+        $imgno = $_POST["imgno"];
         $aaa = new ImgM();
-        $result = $aaa->delImg();
-        echo Albumcontroller::overPage('/edit');
+        $result = $aaa->delImg($imgno);
+        echo AlbumC::overPage('/edit');
     }
 }

@@ -3,6 +3,12 @@ namespace model;
 
 class AlbumM extends DbconM
 {
+    private  $table;
+    public function __construct()
+    {
+        $this->table = 'albums';
+        parent::__construct();
+    }
 
     public function newAlbum()
     {
@@ -12,8 +18,7 @@ class AlbumM extends DbconM
 
     public function showAlbum()
     {
-        $query = 'SELECT * FROM aaa';
-
+        return self::select($this->table, $query);
     }
 
     public function editAlbum()

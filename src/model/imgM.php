@@ -11,19 +11,19 @@ class ImgM extends DbconM
         parent::__construct();
     }
     
-    public function newImg()
+    public function newImg($tmpname, $imgname, $username)
     {
         move_uploaded_file($_FILES["file"]["tmp_name"], "img/".$_FILES["file"]["name"]);
         $query1='tmpname, imgname, username';
         $query2=':tmpname,:imgname,:username';
         $array=array(
-                   ':tmpname' => $_FILES["file"]["name"],
-                   ':imgname' => $_POST["imgname"],
-                   ':username' => $_POST["username"]
+                   ':tmpname' => $tmpname,
+                   ':imgname' => $imgname,
+                   ':username' => $username
                 );
         $this->insert($this->table, $query1, $query2, $array);
-        $msg = array($_POST["imgname"], $_POST["username"]);
-        return $msg;
+        return ;
+ 
     }
 
     public function showImg()
@@ -31,10 +31,8 @@ class ImgM extends DbconM
         return self::select($this->table, $query);
     }
 
-    public function editImg()
+    public function editImg($imgno, $imgname)
     {
-        $imgno=$_GET["imgno"];
-        $imgname=$_GET["imgname"];
         $query1 = 'imgname = :imgname';
         $query2 = 'imgno = :imgno';
         $array = array(':imgno'   => $imgno, ':imgname' => $imgname);
@@ -42,13 +40,12 @@ class ImgM extends DbconM
         return self::select($this->table, $query);
     }
 
-    public function delImg()
+    public function delImg($imgno)
     {
-        if ($_POST["imgno"] == null) {
+        if ($imgno == null) {
         
             ErrorC::showErrorC('4');
         } else {
-            $imgno = $_POST["imgno"];
             $alldel = implode(", ", $imgno);
             $query = ('imgno in ('.$alldel.')');
             $result = $this->select($this->table,$query);
