@@ -1,6 +1,7 @@
 <?php
 namespace model;
 
+use helper\ErrorC;
 
 class ImgM extends DbconM
 {

@@ -1,7 +1,8 @@
 <?php
-namespace  controller;
+namespace  helper;
 
-use model\ErrormsgM;
+use helper\ErrormsgM;
+
 
 class ErrorC
 {
@@ -12,5 +13,6 @@ class ErrorC
         $aaa = new ErrormsgM();
         $ermsg[0] = $aaa->whatMsg($ercode);
         echo $twig->render('errormsgT.html', array('msg'=>$ermsg));
+        exit();
         }
 }

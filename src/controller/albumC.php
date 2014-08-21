@@ -2,8 +2,9 @@
 namespace controller;
 
 use model\DbconM;
-use model\ErrormsgM;
 use model\ImgM;
+use helper\ErrorC;
+
 
 class AlbumC
 {
@@ -86,8 +87,8 @@ class AlbumC
     }
     public function doeditC()
     {
-        $imgno=$_GET["imgno"];
-        $imgname=$_GET["imgname"];
+        $imgno=htmlspecialchars($imgno=$_GET["imgno"]);
+        $imgname=htmlspecialchars($_GET["imgname"]);
         $loader = new \Twig_Loader_Filesystem('templates');
         $twig = new \Twig_Environment($loader);
         $aaa = new ImgM();

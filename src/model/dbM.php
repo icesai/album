@@ -2,6 +2,7 @@
 namespace model;
 
 use \PDO;
+use helper\ErrorC;
 
 class DbconM
 {
@@ -33,7 +34,8 @@ class DbconM
     {
         try {
             $stmt = $this->con->prepare('INSERT INTO '.$table.' ('.$query1.') VALUES ('.$query2.')');
-            $stmt->execute($array);
+            $aa=$stmt->execute($array);
+            return $aa;
         } catch (PDOException $e) {
             ErrorC::showErrorC('0');
         }
@@ -44,8 +46,10 @@ class DbconM
     {
         try {
             $stmt = $this->con->prepare('UPDATE '.$table.' SET '.$query1.' WHERE '.$query2);
-            $stmt->execute($array);
-        
+            $aa=$stmt->execute($array);
+
+            return $aa;
+            
         } catch (PDOException $e) {
            ErrorC::showErrorC('0');
         }
@@ -54,7 +58,9 @@ class DbconM
     public function del($table, $query)
     {
         try {
-            $this->con->query('DELETE FROM '.$table.' WHERE '.$query);
+            $stmt=$this->con->prepare('DELETE FROM '.$table.' WHERE '.$query);
+            $aa=$stmt->execute();
+            return $aa;
         } catch (PDOException $e) {
             ErrorC::showErrorC('0');
         }
